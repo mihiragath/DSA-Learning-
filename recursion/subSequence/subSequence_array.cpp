@@ -43,3 +43,52 @@ int main() {
 
     return 0;
 }
+
+//using vactor array
+
+/*
+#include <iostream>
+#include <vector>
+using namespace std;
+
+void solve(vector<int>& nums, vector<int> output, int index, vector<vector<int>>& ans) {
+    // Base case: when index goes beyond the size of nums
+    if (index >= nums.size()) {
+        ans.push_back(output);  // Add the current subset to the answer
+        return;
+    }
+    
+    // Exclude the current element and move to the next
+    solve(nums, output, index + 1, ans);
+    
+    // Include the current element in the subset
+    output.push_back(nums[index]);
+    solve(nums, output, index + 1, ans);
+}
+
+vector<vector<int>> subsets(vector<int>& nums) {
+    vector<vector<int>> ans;  // To store all subsets
+    vector<int> output;       // To store the current subset
+    int index = 0;            // Start from the first element
+    solve(nums, output, index, ans);  // Call the recursive function
+    return ans;               // Return the result
+}
+
+int main() {
+    vector<int> nums = {1, 2, 3};
+    
+    vector<vector<int>> subsetsResult = subsets(nums);
+    
+    // Output all the subsets
+    for (auto subset : subsetsResult) {
+        cout << "{ ";
+        for (int num : subset) {
+            cout << num << " ";
+        }
+        cout << "}" << endl;
+    }
+
+    return 0;
+}
+
+*/
