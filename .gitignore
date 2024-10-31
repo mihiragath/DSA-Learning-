@@ -1,0 +1,11 @@
+# Ignore all .exe files
+*.exe
+
+# Ignore VS Code specific files
+.vscode/
+
+# Ignore build and output directories
+/build/
+bin/
+Debug/
+Release/
