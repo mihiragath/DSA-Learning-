@@ -4,19 +4,30 @@
 
 using namespace std;
 
-void revQueue(queue<int> &q)
+queue<int> revKElement(queue<int> q, stack<int> s, int k)
 {
-    stack<int> s;
-    while (!q.empty())
+    for (int i = 0; i < k; i++)
     {
-        s.push(q.front());
+        int element = q.front();
         q.pop();
+        s.push(element);
     }
+
     while (!s.empty())
     {
-        q.push(s.top());
+        int element = s.top();
         s.pop();
+        q.push(element);
     }
+
+    int t = q.size() - k;
+    while (t--)
+    {
+        int val = q.front();
+        q.pop();
+        q.push(val);
+    }
+    return q;
 }
 
 void printQueue(queue<int> q)
@@ -31,7 +42,10 @@ void printQueue(queue<int> q)
 
 int main()
 {
+    int k = 3;
     queue<int> q;
+    stack<int> s;
+
     q.push(10);
     q.push(20);
     q.push(30);
@@ -41,9 +55,9 @@ int main()
     cout << "Original Queue: ";
     printQueue(q);
 
-    revQueue(q);
+    q = revKElement(q, s, k);
 
-    cout << "Reversed Queue: ";
+    cout << "Modified Queue: ";
     printQueue(q);
 
     return 0;
