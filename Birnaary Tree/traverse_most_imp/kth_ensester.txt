@@ -1,0 +1,28 @@
+k means provide k no of ensester which is inside the tree..
+
+int kthAncestor(node* root, int target, int k, vector<int>& path) {
+    if (root == NULL) {
+        return -1;
+    }
+    path.push_back(root->data);
+
+    if (root->data == target) {
+        int size = path.size();
+        // Check if k-th ancestor exists
+        if (k >= size) {
+            return -1; 
+        }
+        return path[size - k - 1]; 
+    }
+
+    int leftResult = kthAncestor(root->left, target, k, path);
+    if (leftResult != -1) {
+        return leftResult; 
+    }
+
+    int rightResult = kthAncestor(root->right, target, k, path);
+    if (rightResult != -1) {
+        return rightResult; 
+    }
+    path.pop_back();
+}
